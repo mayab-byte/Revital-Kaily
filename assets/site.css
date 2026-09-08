@@ -18,9 +18,10 @@
   --line:rgba(20,17,14,.13);
   --line-lt:rgba(255,255,255,.14);
 
-  --display:'Frank Ruhl Libre',Georgia,serif;
-  --body:'Assistant','Heebo',system-ui,sans-serif;
-  --num:'Bellefair',Georgia,serif;
+  --display:'Open Sans','Assistant',system-ui,sans-serif;
+  --body:'Open Sans','Assistant',system-ui,sans-serif;
+  --num:'Open Sans','Assistant',system-ui,sans-serif;
+  --num-feat:'tnum' 1;
 
   --r-sm:6px; --r-md:14px; --r-lg:24px;
   --pad:clamp(20px,6vw,104px);
@@ -41,14 +42,14 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 :focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:3px}
 
 /* ---------- טיפוגרפיה ---------- */
-h1,h2,h3,h4{font-family:var(--display);font-weight:500;line-height:1.06;letter-spacing:-.015em;margin:0;text-wrap:balance}
+h1,h2,h3,h4{font-family:var(--display);font-weight:300;line-height:1.12;letter-spacing:-.028em;margin:0;text-wrap:balance}
 h1{font-size:clamp(38px,5.6vw,86px)}
 h2{font-size:clamp(30px,4.2vw,60px)}
 h3{font-size:clamp(21px,2.2vw,32px)}
 h4{font-size:clamp(18px,1.5vw,22px)}
 p{margin:0 0 1.1em;max-width:62ch}
 em{font-style:normal;color:var(--gold)}
-.serif-it{font-family:var(--display);font-style:italic;font-weight:400}
+.serif-it{font-family:var(--display);font-style:normal;font-weight:600;color:var(--gold)}
 
 .eyebrow{
   display:flex;align-items:center;gap:12px;margin:0 0 26px;
@@ -164,7 +165,7 @@ em{font-style:normal;color:var(--gold)}
 .hero .lead{margin-bottom:34px}
 .hero-cta{display:flex;flex-wrap:wrap;gap:13px;margin-bottom:40px}
 .proof{display:flex;align-items:center;gap:15px;font-size:14.5px;color:var(--muted)}
-.proof b{font-family:var(--num);font-size:23px;color:var(--ink);letter-spacing:.02em}
+.proof b{font-family:var(--num);font-size:23px;font-variant-numeric:tabular-nums;font-weight:300;color:var(--ink);letter-spacing:.02em}
 .stack{display:flex}
 .stack i{width:37px;height:37px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:14px;font-weight:600;
   border:2px solid var(--ivory);margin-inline-start:-11px;background:var(--sand-deep);color:var(--ink)}
@@ -186,14 +187,14 @@ em{font-style:normal;color:var(--gold)}
 .marq{border-block:1px solid var(--line);background:var(--ivory);overflow:hidden;padding-block:17px}
 .marq-t{display:flex;gap:52px;width:max-content;animation:marq 34s linear infinite}
 .marq:hover .marq-t{animation-play-state:paused}
-.marq-t span{font-family:var(--num);font-size:19px;letter-spacing:.09em;color:var(--muted);display:flex;align-items:center;gap:52px;white-space:nowrap}
+.marq-t span{font-family:var(--num);font-size:15px;font-weight:600;letter-spacing:.17em;color:var(--muted);display:flex;align-items:center;gap:52px;white-space:nowrap}
 .marq-t span::after{content:"✦";color:var(--gold);font-size:12px}
 @keyframes marq{to{transform:translateX(50%)}}
 
 /* ---------- סרגל ערכים ---------- */
 .pillars{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line)}
 .pillars>article{background:var(--ivory);padding:34px clamp(18px,2vw,32px)}
-.pillars b{font-family:var(--num);font-size:34px;color:var(--gold);display:block;line-height:1;margin-bottom:14px}
+.pillars b{font-family:var(--num);font-size:34px;font-variant-numeric:tabular-nums;font-weight:300;color:var(--gold);display:block;line-height:1;margin-bottom:14px}
 .pillars strong{display:block;font-family:var(--display);font-size:19px;font-weight:500;margin-bottom:6px}
 .pillars p{font-size:14px;color:var(--muted);margin:0}
 
@@ -222,9 +223,9 @@ em{font-style:normal;color:var(--gold)}
 .about-fig img{width:100%;height:100%;object-fit:cover}
 .stamp{position:absolute;z-index:6;bottom:-24px;inset-inline-start:-24px;background:var(--gold);color:#fff;border-radius:var(--r-md);
   padding:19px 24px;display:flex;align-items:center;gap:14px}
-.stamp b{font-family:var(--num);font-size:42px;line-height:1}
+.stamp b{font-family:var(--num);font-size:42px;font-variant-numeric:tabular-nums;font-weight:300;line-height:1}
 .stamp span{font-size:13px;line-height:1.35}
-.sig{font-family:var(--display);font-style:italic;font-size:34px;color:var(--gold-lt);margin:26px 0 20px}
+.sig{font-family:Georgia,serif;font-style:italic;font-size:34px;color:var(--gold-lt);margin:26px 0 20px}
 
 /* ---------- תוצאות / גלריה ---------- */
 .grid-g{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:224px;gap:14px}
@@ -241,8 +242,8 @@ em{font-style:normal;color:var(--gold)}
 .story{display:none;max-width:840px}
 .story.on{display:block;animation:fadeup .55s var(--ease)}
 @keyframes fadeup{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:none}}
-.qm{font-family:var(--display);font-size:76px;color:var(--gold-lt);line-height:.62;margin-bottom:20px}
-.story p{font-family:var(--display);font-size:clamp(21px,2.4vw,34px);line-height:1.35;font-weight:400;margin-bottom:30px;max-width:none}
+.qm{font-family:Georgia,serif;font-size:86px;color:var(--gold-lt);line-height:.55;margin-bottom:18px}
+.story p{font-family:var(--display);font-size:clamp(20px,2.2vw,31px);line-height:1.42;font-weight:300;letter-spacing:-.02em;margin-bottom:30px;max-width:none}
 .story footer{display:flex;align-items:center;gap:14px}
 .av{width:50px;height:50px;border-radius:50%;background:var(--gold);color:#fff;display:grid;place-items:center;font-weight:600;font-size:18px}
 .story footer strong{display:block;font-size:16px}
@@ -254,14 +255,14 @@ em{font-style:normal;color:var(--gold)}
 .wa-grid figure{margin:0;border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;max-height:322px;background:var(--sand)}
 .wa-grid img{width:100%;height:100%;object-fit:cover;object-position:top}
 .ribbon{display:flex;flex-wrap:wrap;align-items:center;gap:18px;padding-top:30px;margin-top:52px;border-top:1px solid var(--line);font-size:14.5px;color:var(--muted)}
-.ribbon b{font-family:var(--num);font-size:29px;color:var(--ink)}
+.ribbon b{font-family:var(--num);font-size:29px;font-variant-numeric:tabular-nums;font-weight:300;color:var(--ink)}
 .ribbon a{margin-inline-start:auto;font-weight:600;color:var(--ink);border-bottom:1px solid var(--gold);padding-bottom:3px}
 
 /* ---------- שאלות ותשובות ---------- */
 .faq{display:grid;grid-template-columns:.62fr 1fr;gap:clamp(42px,8vw,130px)}
 .acc details{border-bottom:1px solid var(--line)}
 .acc summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:flex-start;gap:22px;
-  padding:23px 0;font-family:var(--display);font-size:clamp(17.5px,1.55vw,22px);font-weight:500}
+  padding:23px 0;font-family:var(--display);font-size:clamp(17px,1.45vw,20.5px);font-weight:600}
 .acc summary::-webkit-details-marker{display:none}
 .acc summary i{font-style:normal;color:var(--gold);font-size:21px;flex:none;line-height:1.2;transition:transform .35s var(--ease)}
 .acc details[open] summary i{transform:rotate(45deg)}
