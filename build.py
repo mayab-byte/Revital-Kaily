@@ -572,7 +572,8 @@ FACIALS = phead("טיפולי פנים", "אחרי אבחון, לא לפי קט�
     <ul><li>ניקוי והכנה</li><li>אבחון מצב העור באותו יום</li><li>הטיפול עצמו</li><li>מסכה מותאמת</li><li>הרגעה והגנה</li><li>הדרכת טיפוח לבית</li></ul>
   </div>
   <div class="prose rv rv-d1">
-    <h3>כמה זמן וכל כמה זמן</h3>
+    %(fig_mask)s
+    <h3 style="margin-top:34px">כמה זמן וכל כמה זמן</h3>
     <p>טיפול נמשך בין 45 דקות לשעה וחצי, תלוי בסוג. התדירות המומלצת היא לרוב אחת ל-4 עד 6 שבועות, בהתאם לעור ולמטרה.</p>
     <div class="callout">
       <strong>לפני אירוע</strong>
@@ -1050,7 +1051,7 @@ GEAR = "".join([
 
 CLINIC = "".join([
   cell("assets/ed-lily-b.jpg", "פרט אווירה מהקליניקה", "אווירה", "g-cell tall"),
-  cell("assets/ed-serum.jpg", "טיפוח העור בקליניקה", "טיפוח"),
+  cell("assets/px-glow.jpg", "עור אחיד וזוהר אחרי תהליך טיפולים", "תוצאה"),
   cell("assets/laser-men-back.jpg", "רויטל בטיפול בקליניקה", "בעבודה"),
   cell("assets/about-hands.jpg", "רויטל בעבודה בקליניקה", "מאחורי הקלעים"),
 ])
@@ -1089,18 +1090,18 @@ def sc_card(src, first=False, video=False):
 # חצי ימין (נפתח מהקצה הימני), חצי שמאל (מהקצה השמאלי), והכרטיס המרכזי
 SC_R = "".join([
   sc_slide("assets/ed-laser.jpg", "לייזר", first=True),
-  sc_slide("assets/ed-consult.jpg", "אבחון"),
+  sc_slide("assets/px-facial.jpg", "טיפולי פנים"),
   sc_slide("assets/laser-men-back.jpg", "גם לגברים"),
 ])
 SC_L = "".join([
   sc_slide("assets/ed-skin.jpg", "תוצאות", first=True),
-  sc_slide("assets/ed-serum.jpg", "טיפוח"),
+  sc_slide("assets/px-care.jpg", "טיפוח"),
   sc_slide("assets/ed-lily-a.jpg", "יחס אישי"),
 ])
 SC_C = "".join([
-  sc_card("assets/video/clip-3.mp4", first=True, video=True),
-  sc_card("assets/video/clip-1.mp4", video=True),
-  sc_card("assets/video/clip-2.mp4", video=True),
+  sc_card("assets/video/hero-1.mp4", first=True, video=True),
+  sc_card("assets/video/hero-2.mp4", video=True),
+  sc_card("assets/video/hero-3.mp4", video=True),
 ])
 
 CTX = {
@@ -1109,7 +1110,8 @@ CTX = {
   "hero": HERO_FIG, "about": ABOUT_FIG, "about_portrait": PORTRAIT,
   "gallery": GAL_HOME, "gallery_full": GAL_FULL, "gear": GEAR, "clinic": CLINIC, "wa_wall": WA_WALL,
   "fig_skintags": frame_img("assets/service-skintags.jpg", "לפני ואחרי — הסרת סרחי עור", "טיפול סרחי עור", "assets/skintags-treatment.jpg"),
-  "fig_facial":   frame_img("assets/about-hands.jpg", "אבחון עור בקליניקה", "אבחון עור", "assets/facial-diagnosis.jpg"),
+  "fig_facial":   frame_img("assets/px-facial.jpg", "אבחון וטיפוח עור הפנים", "אבחון עור", "assets/facial-diagnosis.jpg", ratio="4/5"),
+  "fig_mask":     frame_img("assets/px-mask.jpg", "מסכת פנים בטיפול", "טיפול פנים", "assets/facial-mask.jpg"),
   "fig_plasma":   frame_img("assets/service-plasma.jpg", "לפני ואחרי — טיפול פלזמה", "טיפול פלזמה", "assets/plasma-treatment.jpg"),
   "fig_clinic":   frame_ph("חלל הקליניקה", "assets/clinic-space.jpg"),
 }
