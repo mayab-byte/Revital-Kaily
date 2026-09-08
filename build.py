@@ -158,26 +158,33 @@ def write(name, title, desc, content):
 
 # ===================== עמוד הבית =====================
 HOME = """
-<section class="hero wrap">
-  <div class="hero-grid">
-    <div>
-      <p class="eyebrow rv">קליניקת בוטיק · גבעת שמואל · מאז 2014</p>
-      <h1 class="lines"><span><i>תראי בעצמך</i></span><span><i class="serif-it">שזה עובד</i></span><span><i>לפני שאת מתחייבת.</i></span></h1>
-      <p class="lead rv rv-d1">הסרת שיער בלייזר עם InMode Optimas — אחד ממכשירי הלייזר המובילים בעולם. מתחילות בטסט קטן, בודקות את זקיק השערה שלך, ורק אז מחליטות.</p>
-      <div class="hero-cta rv rv-d2">
-        <a class="btn" href="contact.html"><span>לטסט אבחון חינם</span><span class="arw">←</span></a>
-        <button class="btn btn-ghost open-bot"><span>בדקי אם הטיפול מתאים לך</span><span class="arw">←</span></button>
-      </div>
-      <div class="proof rv rv-d3">
-        <div class="stack"><i>ש</i><i>מ</i><i>ד</i></div>
-        <span><b>12</b> שנות ניסיון · מאות לקוחות מרוצות</span>
+<section class="sc" aria-label="הקליניקה במבט אחד">
+  <div class="sc-col sc-col-a">
+    %(sc_a)s
+  </div>
+  <div class="sc-col sc-col-b">
+    %(sc_b)s
+    <div class="sc-mid">
+      <p class="eyebrow">קליניקת בוטיק · גבעת שמואל · מאז 2014</p>
+      <h1>תראי בעצמך <em class="serif-it">שזה עובד</em> לפני שאת מתחייבת.</h1>
+      <p>הסרת שיער בלייזר עם InMode Optimas, 12 שנות ניסיון, ויחס אישי מההתחלה ועד הסוף.</p>
+      <div class="sc-cta">
+        <a class="btn btn-light" href="contact.html"><span>לטסט אבחון חינם</span><span class="arw">←</span></a>
+        <button class="btn btn-ghost open-bot"><span>בדקי אם זה מתאים לך</span><span class="arw">←</span></button>
       </div>
     </div>
-    <div class="hero-fig wipe">
-      %(hero)s
-      <div class="tag-card"><small>הגישה שלי</small><strong>מתחילות<br>מהקשבה.</strong><span>לא מחבילה.</span></div>
-      <div class="ring ring-a"></div><div class="ring ring-b"></div>
+    <div class="sc-nav">
+      <div class="sc-dots" role="tablist" aria-label="מעבר בין תצוגות">
+        <button aria-current="true" aria-label="תצוגה 1"></button>
+        <button aria-current="false" aria-label="תצוגה 2"></button>
+        <button aria-current="false" aria-label="תצוגה 3"></button>
+      </div>
+      <span class="sc-count">01 / 03</span>
     </div>
+    <div class="sc-hint" aria-hidden="true">גלי עוד <span>↓</span></div>
+  </div>
+  <div class="sc-col sc-col-c">
+    %(sc_c)s
   </div>
 </section>
 
@@ -920,7 +927,49 @@ def frame_img(src, alt, label, note="", ratio="16/11"):
         return '<div class="frame" style="aspect-ratio:%s;border-radius:var(--r-lg);overflow:hidden;position:relative;margin-top:28px"><img src="%s" alt="%s" loading="lazy" style="width:100%%;height:100%%;object-fit:cover"></div>' % (ratio, src, alt)
     return frame_ph(label, note, ratio)
 
+
+# --- שקופיות ההירו ---
+def sc_slide(src, word, first=False, video=False):
+    on = ' on' if first else ''
+    if video:
+        media = ('<video src="%s" muted loop playsinline preload="metadata" poster="%s"></video>'
+                 % (src, POSTER))
+    else:
+        media = '<img src="%s" alt="" %s>' % (src, 'fetchpriority="high"' if first else 'loading="lazy"')
+    w = '<p class="sc-word">%s</p>' % word if word else ''
+    return '<div class="sc-slide%s">%s%s</div>' % (on, media, w)
+
+POSTER = "assets/hero-inmode-leg.jpg"
+
+# עמודה ימנית (בעברית — הראשונה בגריד), עמודה מרכזית (וידאו), עמודה שמאלית
+SC_A = "".join([
+  sc_slide("assets/ba-jaw.jpg", "תוצאות", first=True),
+  sc_slide("assets/laser-men-back.jpg", "גם לגברים"),
+  sc_slide("assets/ba-neck-face.jpg", "דיוק"),
+])
+SC_B = "".join([
+  sc_slide("assets/video/clip-1.mp4", "", first=True, video=True),
+  sc_slide("assets/video/clip-2.mp4", "", video=True),
+  sc_slide("assets/service-skintags.jpg", ""),
+])
+SC_C = "".join([
+  sc_slide("assets/about-hands.jpg", "יחס אישי", first=True),
+  sc_slide("assets/service-plasma.jpg", "חידוש עור"),
+  sc_slide("assets/inmode-gear.jpg", "InMode"),
+])
+SC_B = "".join([
+  sc_slide("assets/video/clip-1.mp4", "", first=True, video=True),
+  sc_slide("assets/video/clip-2.mp4", "", video=True),
+  sc_slide("assets/inmode-gear.jpg", ""),
+])
+SC_C = "".join([
+  sc_slide("assets/about-hands.jpg", "יחס אישי", first=True),
+  sc_slide("assets/service-plasma.jpg", "חידוש עור"),
+  sc_slide("assets/service-skintags.jpg", "דיוק"),
+])
+
 CTX = {
+  "sc_a": SC_A, "sc_b": SC_B, "sc_c": SC_C,
   "wa": WA, "tel": TEL, "phone": PHONE, "mail": MAIL, "fb": FB, "form": FORM, "faq": acc(FAQ_ITEMS), "faq_tags": acc(FAQ_TAGS),
   "hero": HERO_FIG, "about": ABOUT_FIG, "about_portrait": PORTRAIT,
   "gallery": GAL_HOME, "gallery_full": GAL_FULL, "gear": GEAR, "clinic": CLINIC, "wa_wall": WA_WALL,
