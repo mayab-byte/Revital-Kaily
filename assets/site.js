@@ -189,40 +189,70 @@ window.RK.initServices=function(root){
 };
 window.RK.initServices(document);
 
-/* ---- הירו: מצגת שלוש עמודות ---- */
+/* ---- הירו: מצגת מוצמדת לגלילה ---- */
 (function(){
-  const sc=document.querySelector('.sc'); if(!sc) return;
-  const cols=[...sc.querySelectorAll('.sc-col')];
-  const groups=cols.map(c=>[...c.querySelectorAll('.sc-slide')]);
+  const wrap=document.querySelector('.sc-wrap'); if(!wrap) return;
+  const sc=wrap.querySelector('.sc');
+  const halves=[...sc.querySelectorAll('.sc-half')];
+  const groups=halves.map(h=>[...h.querySelectorAll('.sc-slide')]);
+  const vids=[...sc.querySelectorAll('.sc-vid')];
   const n=groups[0].length;
   const dots=[...sc.querySelectorAll('.sc-dots button')];
   const count=sc.querySelector('.sc-count');
-  let i=0, timer=null;
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let i=-1;
 
-  // פיצול המילים לאותיות, לחשיפה אות-אות
+  // פיצול המילים לאותיות
   sc.querySelectorAll('.sc-word').forEach(w=>{
     w.innerHTML=[...w.textContent.trim()].map((ch,k)=>
       ch===' ' ? '<i class="sp"></i>'
-               : `<i class="ch" style="transition-delay:${.28+k*.045}s">${ch}</i>`).join('');
+               : `<i class="ch" style="transition-delay:${.3+k*.045}s">${ch}</i>`).join('');
   });
 
   function show(k){
-    i=(k+n)%n;
-    groups.forEach(g=>g.forEach((s,j)=>{
-      s.classList.toggle('on', j===i);
-      const v=s.querySelector('video');
-      if(v){ if(j===i){ v.play().catch(()=>{}); } else { v.pause(); } }
-    }));
+    if(k===i) return;
+    i=k;
+    groups.forEach(g=>g.forEach((s,j)=>s.classList.toggle('on', j===i)));
+    vids.forEach((v,j)=>{
+      v.classList.toggle('on', j===i);
+      const el=v.querySelector('video');
+      if(el){ j===i ? el.play().catch(()=>{}) : el.pause(); }
+    });
     dots.forEach((d,j)=>d.setAttribute('aria-current', j===i));
     if(count) count.textContent=String(i+1).padStart(2,'0')+' / '+String(n).padStart(2,'0');
   }
-  function auto(){ clearInterval(timer); timer=setInterval(()=>show(i+1), 6500); }
 
-  dots.forEach((d,j)=>d.addEventListener('click',()=>{show(j);auto()}));
-  sc.addEventListener('mouseenter',()=>clearInterval(timer));
-  sc.addEventListener('mouseleave',auto);
-  document.addEventListener('visibilitychange',()=>document.hidden?clearInterval(timer):auto());
+  // מיקום הגלילה קובע את השקופית — שלושה מסכי גלילה, שלוש החלפות
+  let ticking=false;
+  function onScroll(){
+    if(ticking) return; ticking=true;
+    requestAnimationFrame(()=>{
+      ticking=false;
+      const r=wrap.getBoundingClientRect();
+      const travel=wrap.offsetHeight-sc.offsetHeight;
+      if(travel<=0) return;
+      const p=Math.min(1,Math.max(0,(-r.top)/travel));
+      show(Math.min(n-1,Math.floor(p*n)));
+    });
+  }
+
+  // מעבר ידני: מגלגלים את הדף למקום של השקופית
+  dots.forEach((d,j)=>d.addEventListener('click',()=>{
+    if(getComputedStyle(sc).position!=='sticky'){ show(j); return; }
+    const travel=wrap.offsetHeight-sc.offsetHeight;
+    scrollTo({top:wrap.offsetTop+(j+.5)/n*travel, behavior:'smooth'});
+  }));
 
   show(0);
-  if(!matchMedia('(prefers-reduced-motion: reduce)').matches) auto();
+  if(!reduce && getComputedStyle(sc).position==='sticky'){
+    addEventListener('scroll',onScroll,{passive:true});
+    addEventListener('resize',onScroll);
+    onScroll();
+  } else {
+    // מובייל / תנועה מופחתת: החלפה אוטומטית רגילה
+    let t=setInterval(()=>show((i+1)%n),6000);
+    document.addEventListener('visibilitychange',()=>{
+      clearInterval(t); if(!document.hidden) t=setInterval(()=>show((i+1)%n),6000);
+    });
+  }
 })();

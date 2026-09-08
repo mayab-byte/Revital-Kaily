@@ -158,35 +158,37 @@ def write(name, title, desc, content):
 
 # ===================== עמוד הבית =====================
 HOME = """
+<div class="sc-wrap">
 <section class="sc" aria-label="הקליניקה במבט אחד">
-  <div class="sc-col sc-col-a">
-    %(sc_a)s
+  <div class="sc-half sc-half-r">
+    %(sc_r)s
   </div>
-  <div class="sc-col sc-col-b">
-    %(sc_b)s
-    <div class="sc-mid">
-      <p class="eyebrow">קליניקת בוטיק · גבעת שמואל · מאז 2014</p>
-      <h1>תראי בעצמך <em class="serif-it">שזה עובד</em> לפני שאת מתחייבת.</h1>
-      <p>הסרת שיער בלייזר עם InMode Optimas, 12 שנות ניסיון, ויחס אישי מההתחלה ועד הסוף.</p>
-      <div class="sc-cta">
-        <a class="btn btn-light" href="contact.html"><span>לטסט אבחון חינם</span><span class="arw">←</span></a>
-        <button class="btn btn-ghost open-bot"><span>בדקי אם זה מתאים לך</span><span class="arw">←</span></button>
-      </div>
+  <div class="sc-half sc-half-l">
+    %(sc_l)s
+  </div>
+
+  <div class="sc-mid">
+    <p class="eyebrow">קליניקת בוטיק · גבעת שמואל</p>
+    <h1>תראי בעצמך <em class="serif-it">שזה עובד</em> לפני שאת מתחייבת.</h1>
+    <div class="sc-ring" aria-hidden="true"></div>
+    <div class="sc-card">%(sc_c)s</div>
+    <div class="sc-cta">
+      <a class="btn btn-light" href="contact.html"><span>לטסט אבחון חינם</span><span class="arw">←</span></a>
+      <button class="btn btn-ghost open-bot"><span>בדקי אם זה מתאים לך</span><span class="arw">←</span></button>
     </div>
-    <div class="sc-nav">
-      <div class="sc-dots" role="tablist" aria-label="מעבר בין תצוגות">
-        <button aria-current="true" aria-label="תצוגה 1"></button>
-        <button aria-current="false" aria-label="תצוגה 2"></button>
-        <button aria-current="false" aria-label="תצוגה 3"></button>
-      </div>
-      <span class="sc-count">01 / 03</span>
+  </div>
+
+  <div class="sc-nav">
+    <div class="sc-dots" role="tablist" aria-label="מעבר בין תצוגות">
+      <button aria-current="true" aria-label="תצוגה 1"></button>
+      <button aria-current="false" aria-label="תצוגה 2"></button>
+      <button aria-current="false" aria-label="תצוגה 3"></button>
     </div>
-    <div class="sc-hint" aria-hidden="true">גלי עוד <span>↓</span></div>
+    <span class="sc-count">01 / 03</span>
   </div>
-  <div class="sc-col sc-col-c">
-    %(sc_c)s
-  </div>
+  <div class="sc-hint" aria-hidden="true">גלי להחלפה <span>↓</span></div>
 </section>
+</div>
 
 <div class="marq" aria-hidden="true"><div class="marq-t">
   <span>InMode Optimas</span><span>טסט אבחון ללא עלות</span><span>12 שנות ניסיון</span><span>יחס אישי</span>
@@ -928,48 +930,39 @@ def frame_img(src, alt, label, note="", ratio="16/11"):
     return frame_ph(label, note, ratio)
 
 
-# --- שקופיות ההירו ---
-def sc_slide(src, word, first=False, video=False):
-    on = ' on' if first else ''
-    if video:
-        media = ('<video src="%s" muted loop playsinline preload="metadata" poster="%s"></video>'
-                 % (src, POSTER))
-    else:
-        media = '<img src="%s" alt="" %s>' % (src, 'fetchpriority="high"' if first else 'loading="lazy"')
+# --- שקופיות ההירו: שני חצאים + כרטיס וידאו במרכז ---
+def sc_slide(src, word, first=False):
     w = '<p class="sc-word">%s</p>' % word if word else ''
-    return '<div class="sc-slide%s">%s%s</div>' % (on, media, w)
+    pr = 'fetchpriority="high"' if first else 'loading="lazy"'
+    return ('<div class="sc-slide%s"><img src="%s" alt="" %s>%s</div>'
+            % (' on' if first else '', src, pr, w))
 
-POSTER = "assets/hero-inmode-leg.jpg"
+def sc_card(src, first=False, video=False):
+    inner = ('<video src="%s" muted loop playsinline preload="metadata" poster="%s"></video>'
+             % (src, "assets/hero-inmode-leg.jpg")) if video else ('<img src="%s" alt="" loading="lazy">' % src)
+    return '<div class="sc-vid%s">%s</div>' % (' on' if first else '', inner)
 
-# עמודה ימנית (בעברית — הראשונה בגריד), עמודה מרכזית (וידאו), עמודה שמאלית
-SC_A = "".join([
-  sc_slide("assets/ba-jaw.jpg", "תוצאות", first=True),
+# חצי ימין (נפתח מהקצה הימני), חצי שמאל (מהקצה השמאלי), והכרטיס המרכזי
+SC_R = "".join([
+  sc_slide("assets/hero-inmode-leg.jpg", "לייזר", first=True),
   sc_slide("assets/laser-men-back.jpg", "גם לגברים"),
-  sc_slide("assets/ba-neck-face.jpg", "דיוק"),
+  sc_slide("assets/service-skintags.jpg", "סרחי עור"),
 ])
-SC_B = "".join([
-  sc_slide("assets/video/clip-1.mp4", "", first=True, video=True),
-  sc_slide("assets/video/clip-2.mp4", "", video=True),
-  sc_slide("assets/service-skintags.jpg", ""),
-])
-SC_C = "".join([
-  sc_slide("assets/about-hands.jpg", "יחס אישי", first=True),
+SC_L = "".join([
+  sc_slide("assets/ba-jaw.jpg", "תוצאות", first=True),
+  sc_slide("assets/about-hands.jpg", "יחס אישי"),
   sc_slide("assets/service-plasma.jpg", "חידוש עור"),
-  sc_slide("assets/inmode-gear.jpg", "InMode"),
 ])
-SC_B = "".join([
-  sc_slide("assets/video/clip-1.mp4", "", first=True, video=True),
-  sc_slide("assets/video/clip-2.mp4", "", video=True),
-  sc_slide("assets/inmode-gear.jpg", ""),
-])
+# הכרטיס המרכזי מהדהד את החצי שלצידו — בתנועה
 SC_C = "".join([
-  sc_slide("assets/about-hands.jpg", "יחס אישי", first=True),
-  sc_slide("assets/service-plasma.jpg", "חידוש עור"),
-  sc_slide("assets/service-skintags.jpg", "דיוק"),
+  sc_card("assets/video/clip-1.mp4", first=True, video=True),
+  sc_card("assets/video/clip-2.mp4", video=True),
+  sc_card("assets/inmode-gear.jpg"),
 ])
+
 
 CTX = {
-  "sc_a": SC_A, "sc_b": SC_B, "sc_c": SC_C,
+  "sc_r": SC_R, "sc_l": SC_L, "sc_c": SC_C,
   "wa": WA, "tel": TEL, "phone": PHONE, "mail": MAIL, "fb": FB, "form": FORM, "faq": acc(FAQ_ITEMS), "faq_tags": acc(FAQ_TAGS),
   "hero": HERO_FIG, "about": ABOUT_FIG, "about_portrait": PORTRAIT,
   "gallery": GAL_HOME, "gallery_full": GAL_FULL, "gear": GEAR, "clinic": CLINIC, "wa_wall": WA_WALL,

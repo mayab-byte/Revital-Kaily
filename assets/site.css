@@ -411,74 +411,84 @@ em{font-style:normal;color:var(--gold)}
 }
 
 /* ==========================================================================
-   הירו — מצגת שלוש עמודות
-   כל עמודה נחשפת ממגב בכיוון אחר: הימנית מהצד, המרכזית מהמרכז החוצה.
+   הירו — מצגת מוצמדת לגלילה
+   שני חצאי מסך שנחשפים ממגב מהקצה החיצוני, וכרטיס וידאו שנפתח מהמרכז
+   בדיוק על התפר ביניהם. שלושה מסכי גלילה = שלוש החלפות.
    ========================================================================== */
-.sc{position:relative;height:calc(100svh - 82px);min-height:600px;max-height:900px;
-  display:grid;grid-template-columns:1fr 1.2fr 1fr;background:var(--ink);overflow:hidden}
-.sc-col{position:relative;overflow:hidden}
-.sc-slide{position:absolute;inset:0;will-change:clip-path}
-.sc-slide img,.sc-slide video{width:100%;height:100%;object-fit:cover;display:block;
-  transition:transform 1.4s var(--ease);will-change:transform}
+.sc-wrap{position:relative;height:300svh}
+.sc{position:sticky;top:82px;height:calc(100svh - 82px);min-height:560px;
+  display:grid;grid-template-columns:1fr 1fr;background:var(--ink);overflow:hidden}
+.sc-half{position:relative;overflow:hidden}
+.sc-slide{position:absolute;inset:0;overflow:hidden}
+.sc-slide>img{width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform 1.25s var(--ease);will-change:transform}
 
-/* כיווני המגב */
-.sc-col-a .sc-slide{clip-path:inset(0 0 0 100%);transition:clip-path 1.05s var(--ease)}
-.sc-col-b .sc-slide{clip-path:inset(50%);transition:clip-path 1.05s var(--ease)}
-.sc-col-c .sc-slide{clip-path:inset(0 100% 0 0);transition:clip-path 1.05s var(--ease)}
+/* המגב: כל חצי נפתח מהקצה החיצוני שלו פנימה */
+.sc-half-r .sc-slide{clip-path:inset(0 0 0 100%);transition:clip-path 1s var(--ease)}
+.sc-half-l .sc-slide{clip-path:inset(0 100% 0 0);transition:clip-path 1s var(--ease)}
 .sc-slide.on{clip-path:inset(0)}
-.sc-col-a .sc-slide:not(.on) img{transform:translateX(8%)}
-.sc-col-c .sc-slide:not(.on) img{transform:translateX(-8%)}
-
-/* מילת הכותרת על עמודות הצד */
-.sc-word{position:absolute;inset-inline:0;bottom:clamp(26px,4vw,52px);text-align:center;
-  color:var(--ivory);font-size:clamp(22px,2.6vw,40px);font-weight:300;letter-spacing:-.02em;
-  text-shadow:0 1px 3px rgba(10,9,8,.6),0 2px 34px rgba(10,9,8,.75);pointer-events:none}
-.sc-word .ch{display:inline-block;transform:translateY(115%);opacity:0;
-  transition:transform .8s var(--ease),opacity .5s linear}
-.sc-slide.on .sc-word .ch{transform:none;opacity:1}
-.sc-word .sp{display:inline-block;width:.32em}
-
-/* שכבת החושך שמאפשרת לקרוא את הטקסט */
+.sc-half-r .sc-slide:not(.on)>img{transform:translateX(-22%)}
+.sc-half-l .sc-slide:not(.on)>img{transform:translateX(22%)}
 .sc-slide::after{content:"";position:absolute;inset:0;pointer-events:none;
-  background:linear-gradient(to top,rgba(10,9,8,.62),rgba(10,9,8,.05) 52%)}
-.sc-col-b .sc-slide::after{background:linear-gradient(to top,rgba(10,9,8,.86),rgba(10,9,8,.55) 45%,rgba(10,9,8,.72))}
+  background:linear-gradient(to top,rgba(10,9,8,.62),rgba(10,9,8,.12) 46%,rgba(10,9,8,.42))}
 
-/* המסר המרכזי */
-.sc-mid{position:absolute;inset:0;z-index:5;display:grid;align-content:center;justify-items:center;
-  text-align:center;gap:20px;padding:clamp(24px,4vw,56px);pointer-events:none}
+/* המילה על כל חצי — למעלה באחד, למטה בשני */
+.sc-word{position:absolute;inset-inline:clamp(20px,4vw,64px);z-index:3;
+  color:var(--ivory);font-size:clamp(26px,3.4vw,58px);font-weight:300;letter-spacing:-.02em;
+  text-shadow:0 1px 3px rgba(10,9,8,.5),0 2px 40px rgba(10,9,8,.7);pointer-events:none;line-height:1.1}
+.sc-half-r .sc-word{top:clamp(26px,5vw,74px);text-align:right}
+.sc-half-l .sc-word{bottom:clamp(26px,5vw,74px);text-align:left}
+.sc-word .ch{display:inline-block;transform:translateY(115%);opacity:0;
+  transition:transform .85s var(--ease),opacity .45s linear}
+.sc-slide.on .sc-word .ch{transform:none;opacity:1}
+.sc-word .sp{display:inline-block;width:.3em}
+
+/* המרכז — יושב על התפר */
+.sc-mid{position:absolute;inset:0;z-index:6;display:grid;align-content:center;justify-items:center;
+  gap:clamp(14px,1.6vw,22px);text-align:center;padding:clamp(20px,3vw,44px);pointer-events:none}
+/* צעיף כהה במרכז — מבטיח שהטקסט קריא מעל כל תמונה, בהירה או כהה */
+.sc-mid::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:radial-gradient(62% 66% at 50% 46%,rgba(10,9,8,.76),rgba(10,9,8,.42) 58%,rgba(10,9,8,0) 84%)}
 .sc-mid>*{pointer-events:auto}
-.sc-mid .eyebrow{justify-content:center;color:rgba(250,247,241,.72);margin:0;white-space:nowrap;font-size:11px}
+.sc-mid .eyebrow{justify-content:center;color:rgba(250,247,241,.75);margin:0;font-size:11px}
 .sc-mid .eyebrow::before{background:var(--gold-lt)}
-.sc-mid h1{color:var(--ivory);font-size:clamp(29px,3.5vw,58px);line-height:1.1;max-width:15ch;
-  text-shadow:0 2px 34px rgba(10,9,8,.55)}
-.sc-mid p{color:rgba(250,247,241,.8);max-width:38ch;font-size:clamp(15px,1.15vw,17.5px);margin:0}
-.sc-cta{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:6px}
-.sc-mid .btn-ghost{--fg:var(--ivory);border-color:rgba(250,247,241,.4);backdrop-filter:blur(6px)}
+.sc-mid h1{color:var(--ivory);font-size:clamp(26px,3vw,48px);line-height:1.12;max-width:16ch;
+  text-shadow:0 2px 40px rgba(10,9,8,.7)}
+.sc-card{position:relative;width:clamp(190px,17vw,272px);aspect-ratio:1;border-radius:22px;overflow:hidden;
+  box-shadow:0 26px 70px rgba(10,9,8,.45);background:var(--ink)}
+.sc-card .sc-vid{position:absolute;inset:0;clip-path:inset(50%);transition:clip-path 1s var(--ease)}
+.sc-card .sc-vid.on{clip-path:inset(0)}
+.sc-card video,.sc-card img{width:100%;height:100%;object-fit:cover;display:block}
+.sc-ring{position:absolute;top:calc(50% - clamp(190px,17vw,272px)/2 - 34px);inset-inline:0;margin:auto;
+  width:26px;height:26px;border:1px solid rgba(250,247,241,.4);border-radius:50%;pointer-events:none}
+.sc-cta{display:flex;flex-wrap:wrap;gap:11px;justify-content:center}
+.sc-mid .btn-ghost{--fg:var(--ivory);border-color:rgba(250,247,241,.45);backdrop-filter:blur(8px)}
 
 /* שליטה */
-.sc-nav{position:absolute;z-index:6;bottom:clamp(20px,3vw,34px);inset-inline-start:clamp(20px,3vw,40px);
+.sc-nav{position:absolute;z-index:7;bottom:clamp(18px,2.4vw,30px);inset-inline-start:clamp(20px,3vw,44px);
   display:flex;align-items:center;gap:14px}
-.sc-dots{display:flex;gap:9px}
-.sc-dots button{width:30px;height:2px;background:rgba(250,247,241,.32);border-radius:2px;transition:.4s var(--ease)}
-.sc-dots button[aria-current="true"]{background:var(--gold-lt);width:52px}
-.sc-count{color:rgba(250,247,241,.6);font-size:12.5px;letter-spacing:.16em;font-variant-numeric:tabular-nums;direction:ltr}
-.sc-hint{position:absolute;z-index:6;bottom:clamp(20px,3vw,34px);inset-inline-end:clamp(20px,3vw,40px);
-  color:rgba(250,247,241,.55);font-size:11.5px;letter-spacing:.18em;display:flex;align-items:center;gap:9px}
+.sc-dots{display:flex;gap:8px}
+.sc-dots button{width:28px;height:2px;background:rgba(250,247,241,.3);border-radius:2px;transition:.45s var(--ease)}
+.sc-dots button[aria-current="true"]{background:var(--gold-lt);width:50px}
+.sc-count{color:rgba(250,247,241,.6);font-size:12px;letter-spacing:.16em;font-variant-numeric:tabular-nums;direction:ltr}
+.sc-hint{position:absolute;z-index:7;bottom:clamp(18px,2.4vw,30px);inset-inline-end:clamp(20px,3vw,44px);
+  color:rgba(250,247,241,.55);font-size:11px;letter-spacing:.18em;display:flex;align-items:center;gap:8px}
 .sc-hint span{animation:float 2.4s ease-in-out infinite}
 
-@media(max-width:1100px){
-  .sc{grid-template-columns:1fr 1.3fr}
-  .sc-col-c{display:none}
-}
 @media(max-width:760px){
-  .sc{grid-template-columns:1fr;height:auto;max-height:none;min-height:0}
-  .sc-col-a{display:none}
-  .sc-col-b{aspect-ratio:auto;min-height:78svh}
-  .sc-mid{padding:26px 22px 82px;gap:16px}
-  .sc-mid .eyebrow{white-space:normal;text-align:center;flex-wrap:wrap;row-gap:6px}
-  .sc-mid h1,.sc-mid p{max-width:100%}
-  .sc-cta{flex-direction:column;align-items:stretch;width:100%;max-width:320px}
+  .sc-wrap{height:auto}
+  .sc{position:relative;top:0;grid-template-columns:1fr;height:auto;min-height:0}
+  .sc-half-l{display:none}
+  .sc-half-r{min-height:86svh}
+  .sc-half-r .sc-word{top:auto;bottom:clamp(84px,14vw,120px);text-align:center;font-size:clamp(24px,7vw,34px)}
+  .sc-mid{padding:24px 22px 150px;gap:15px}
+  .sc-mid .eyebrow{flex-wrap:wrap;row-gap:6px;text-align:center}
+  .sc-mid h1{max-width:100%;font-size:clamp(25px,7vw,34px)}
+  .sc-card{width:clamp(140px,42vw,190px)}
+  .sc-ring{display:none}
+  .sc-cta{flex-direction:column;align-items:stretch;width:100%;max-width:300px}
   .sc-cta .btn{justify-content:center;width:100%}
-  .sc-nav{inset-inline-start:22px;inset-inline-end:auto}
+  .sc-nav{inset-inline-start:22px;inset-inline-end:auto;bottom:18px}
   .sc-hint{display:none}
 }
+@media(prefers-reduced-motion:reduce){.sc-wrap{height:auto}.sc{position:relative}}
