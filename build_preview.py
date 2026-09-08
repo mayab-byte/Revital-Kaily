@@ -17,7 +17,7 @@ fonts = re.search(r'<link rel="stylesheet" href="https://fonts\.googleapis[^>]*>
 css = open("assets/site.css", encoding="utf-8").read()
 js  = open("assets/site.js",  encoding="utf-8").read()
 
-body = src.split("<body>")[1].split("</body>")[0]
+body = re.split(r"<body[^>]*>", src, maxsplit=1)[1].split("</body>")[0]
 chrome_top = body.split("<main>")[0]
 chrome_bot = body.split("</main>")[1].replace('<script src="assets/site.js"></script>', "")
 
@@ -37,6 +37,8 @@ out = ("<title>%s</title>\n%s\n<style>%s</style>\n%s<main id=\"app\"></main>\n%s
   function render(){
     const k=route(); const html=window.__PAGES__[k]||window.__PAGES__.index;
     app.innerHTML=html; scrollTo(0,0);
+    document.body.classList.toggle('has-hero', /sc-wrap/.test(html));
+    document.body.classList.toggle('no-hero', !/sc-wrap/.test(html));
     document.querySelectorAll('.nav a,.mnav a').forEach(a=>{
       const t=(a.getAttribute('href')||'').replace('.html','').replace('#/','');
       a.toggleAttribute('aria-current', t===k);
