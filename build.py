@@ -17,7 +17,11 @@ NAV = [
     ("contact.html", "צור קשר", None),
 ]
 
-WA = "https://wa.me/972500000000"
+WA    = "https://wa.me/972549462663"
+PHONE = "054-9462663"
+TEL   = "tel:+972549462663"
+MAIL  = "Revital.kaily@gmail.com"
+FB    = "https://www.facebook.com/revital1994/?locale=he_IL"
 
 def nav_html(cur):
     out = []
@@ -52,14 +56,16 @@ FOOTER = """<footer class="ftr">
     <a href="about.html">אודות רויטל</a><a href="testimonials.html">המלצות</a>
     <a href="gallery.html">גלריה</a><a href="faq.html">שאלות ותשובות</a></div>
   <div><strong>דברי איתי</strong>
-    <a href="tel:0500000000">050-0000000</a><a href="%(wa)s">וואטסאפ</a>
+    <a href="%(tel)s">%(phone)s</a>
+    <a href="%(wa)s">וואטסאפ</a>
+    <a href="mailto:%(mail)s">%(mail)s</a>
     <span>גבעת שמואל</span><span>א׳–ה׳ 09:00–20:00 · ו׳ 09:00–13:00</span>
-    <span>Instagram · Facebook</span></div>
+    <a href="%(fb)s" target="_blank" rel="noopener">פייסבוק</a></div>
   <div class="ftr-btm">
     <span>© 2026 רויטל קיילי. כל הזכויות שמורות.</span>
     <span>נגישות · מדיניות פרטיות · תנאי שימוש</span>
   </div>
-</footer>""" % {"wa": WA}
+</footer>""" % {"wa": WA, "tel": TEL, "phone": PHONE, "mail": MAIL, "fb": FB}
 
 BOT = """<div class="ov" id="ov" role="dialog" aria-modal="true" aria-label="בדיקת התאמה">
   <div class="bot">
@@ -71,8 +77,8 @@ BOT = """<div class="ov" id="ov" role="dialog" aria-modal="true" aria-label="ב�
 </div>
 <a class="wa-float" href="%(wa)s" aria-label="וואטסאפ">✆</a>
 <div class="mbar">
-  <a href="%(wa)s">וואטסאפ</a><a href="tel:0500000000">חייגי</a><a href="contact.html">טסט חינם</a>
-</div>""" % {"wa": WA}
+  <a href="%(wa)s">וואטסאפ</a><a href="%(tel)s">חייגי</a><a href="contact.html">טסט חינם</a>
+</div>""" % {"wa": WA, "tel": TEL}
 
 SHELL = """<!doctype html>
 <html lang="he" dir="rtl">
@@ -89,6 +95,24 @@ SHELL = """<!doctype html>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,600&family=Assistant:wght@300;400;600&display=swap">
 <link rel="stylesheet" href="assets/site.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"HealthAndBeautyBusiness",
+ "name":"רויטל קיילי — קליניקה לאסתטיקה",
+ "description":"קליניקת בוטיק להסרת שיער בלייזר וטיפולי אסתטיקה בגבעת שמואל",
+ "telephone":"+972-54-946-2663",
+ "email":"Revital.kaily@gmail.com",
+ "address":{"@type":"PostalAddress","addressLocality":"גבעת שמואל","addressCountry":"IL"},
+ "areaServed":"גבעת שמואל והסביבה",
+ "sameAs":["https://www.facebook.com/revital1994/"],
+ "openingHoursSpecification":[
+   {"@type":"OpeningHoursSpecification","dayOfWeek":["Sunday","Monday","Tuesday","Wednesday","Thursday"],"opens":"09:00","closes":"20:00"},
+   {"@type":"OpeningHoursSpecification","dayOfWeek":"Friday","opens":"09:00","closes":"13:00"}],
+ "makesOffer":[
+   {"@type":"Offer","itemOffered":{"@type":"Service","name":"הסרת שיער בלייזר"}},
+   {"@type":"Offer","itemOffered":{"@type":"Service","name":"הסרת סרחי עור"}},
+   {"@type":"Offer","itemOffered":{"@type":"Service","name":"טיפולי פנים"}},
+   {"@type":"Offer","itemOffered":{"@type":"Service","name":"טיפולי פלזמה וחידוש עור"}}]}
+</script>
 </head>
 <body>
 <div class="beam" aria-hidden="true"><i></i></div>
@@ -810,8 +834,10 @@ CONTACT = phead("צור קשר", "הצעד הראשון קטן",
       <h2>איפה אנחנו</h2>
       <table class="tbl" style="margin-top:26px">
         <tr><td>כתובת</td><td>גבעת שמואל<br><span style="color:var(--muted)">רחוב ומספר — להשלמה</span></td></tr>
-        <tr><td>טלפון</td><td><a href="tel:0500000000" style="border-bottom:1px solid var(--gold)">050-0000000</a></td></tr>
-        <tr><td>וואטסאפ</td><td><a href="%(wa)s" style="border-bottom:1px solid var(--gold)">שליחת הודעה</a></td></tr>
+        <tr><td>טלפון</td><td><a href="%(tel)s" style="border-bottom:1px solid var(--gold)">%(phone)s</a></td></tr>
+        <tr><td>וואטסאפ</td><td><a href="%(wa)s" style="border-bottom:1px solid var(--gold)">שליחת הודעה ל-%(phone)s</a></td></tr>
+        <tr><td>מייל</td><td><a href="mailto:%(mail)s" style="border-bottom:1px solid var(--gold)">%(mail)s</a></td></tr>
+        <tr><td>פייסבוק</td><td><a href="%(fb)s" target="_blank" rel="noopener" style="border-bottom:1px solid var(--gold)">רויטל קיילי בפייסבוק</a></td></tr>
         <tr><td>שעות</td><td>א׳–ה׳ 09:00–20:00<br>ו׳ 09:00–13:00</td></tr>
         <tr><td>חניה</td><td><span style="color:var(--muted)">להשלמה</span></td></tr>
         <tr><td>נגישות</td><td><span style="color:var(--muted)">להשלמה</span></td></tr>
@@ -895,7 +921,7 @@ def frame_img(src, alt, label, note="", ratio="16/11"):
     return frame_ph(label, note, ratio)
 
 CTX = {
-  "wa": WA, "form": FORM, "faq": acc(FAQ_ITEMS), "faq_tags": acc(FAQ_TAGS),
+  "wa": WA, "tel": TEL, "phone": PHONE, "mail": MAIL, "fb": FB, "form": FORM, "faq": acc(FAQ_ITEMS), "faq_tags": acc(FAQ_TAGS),
   "hero": HERO_FIG, "about": ABOUT_FIG, "about_portrait": PORTRAIT,
   "gallery": GAL_HOME, "gallery_full": GAL_FULL, "gear": GEAR, "clinic": CLINIC, "wa_wall": WA_WALL,
   "fig_skintags": frame_img("assets/service-skintags.jpg", "לפני ואחרי — הסרת סרחי עור", "טיפול סרחי עור", "assets/skintags-treatment.jpg"),

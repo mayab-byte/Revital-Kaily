@@ -131,7 +131,7 @@ window.RK={initPage:initPage};
     bar.style.width='100%';
     body.innerHTML=`<div class="bot-out"><div class="em">${o.e}</div><h3>${o.h}</h3><p style="color:var(--muted);max-width:none">${o.p}</p>`+
       (o.cta?'<button class="btn" id="go"><span>רוצה לראות בכל זאת</span><span class="arw">←</span></button>'
-           :'<a class="btn btn-ghost" href="https://wa.me/972500000000"><span>לוואטסאפ של רויטל</span></a>')+'</div>';
+           :'<a class="btn btn-ghost" href="https://wa.me/972549462663"><span>לוואטסאפ של רויטל</span></a>')+'</div>';
     const g=document.getElementById('go');
     if(g)g.addEventListener('click',()=>{step=STEPS.length;result()});
   }
