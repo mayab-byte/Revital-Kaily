@@ -4,7 +4,18 @@ document.documentElement.setAttribute('lang','he');
 
 /* ---- כותרת דביקה ---- */
 const hdr=document.querySelector('.hdr');
-if(hdr){const onScroll=()=>hdr.classList.toggle('stuck',scrollY>24);onScroll();addEventListener('scroll',onScroll,{passive:true})}
+if(hdr){
+  const heroWrap=document.querySelector('.sc-wrap');
+  const onScroll=()=>{
+    hdr.classList.toggle('stuck',scrollY>24);
+    if(heroWrap){
+      // שקופה כל עוד ההירו עדיין מאחוריה
+      const bottom=heroWrap.getBoundingClientRect().bottom;
+      hdr.classList.toggle('over', bottom>hdr.offsetHeight+8);
+    }
+  };
+  onScroll();addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',onScroll);
+}
 
 /* ---- תפריט מובייל ---- */
 const burger=document.querySelector('.burger'),mnav=document.querySelector('.mnav');

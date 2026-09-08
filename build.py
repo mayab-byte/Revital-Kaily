@@ -114,7 +114,7 @@ SHELL = """<!doctype html>
    {{"@type":"Offer","itemOffered":{{"@type":"Service","name":"טיפולי פלזמה וחידוש עור"}}}}]}}
 </script>
 </head>
-<body>
+<body class="{body_class}">
 <div class="beam" aria-hidden="true"><i></i></div>
 
 <header class="hdr">
@@ -152,7 +152,8 @@ def figure(src, alt, label, note="", cls="frame"):
 
 def write(name, title, desc, content):
     html = SHELL.format(title=title, desc=desc, nav=nav_html(name), mnav=mnav_html(),
-                        content=content, footer=FOOTER, bot=BOT)
+                        content=content, footer=FOOTER, bot=BOT,
+                        body_class="has-hero" if "sc-wrap" in content else "no-hero")
     open(name, "w", encoding="utf-8").write(html)
     print("  ", name, len(html)//1024, "KB")
 
