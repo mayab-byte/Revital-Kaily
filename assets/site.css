@@ -330,6 +330,7 @@ body.no-hero{padding-top:82px}
 .ftr-btm{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.09);padding-top:23px;margin-top:20px;
   display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:12.5px}
 .ftr-btm span{margin:0}
+.ftr-btm a{display:inline;margin:0}
 
 /* ---------- מודאל הבוט ---------- */
 .ov{position:fixed;inset:0;background:rgba(14,12,10,.66);backdrop-filter:blur(6px);z-index:90;display:none;place-items:center;padding:20px}

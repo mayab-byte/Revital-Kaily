@@ -7,7 +7,7 @@ def datauri(path):
     mime = 'image/png' if ext == 'png' else 'image/jpeg'
     return 'data:%s;base64,%s' % (mime, base64.b64encode(open(path, 'rb').read()).decode())
 
-PAGES = ["index","laser","skin-tags","facials","treatments","about","testimonials","faq","gallery","contact"]
+PAGES = ["index","laser","skin-tags","facials","treatments","about","testimonials","faq","gallery","contact","privacy","accessibility","terms"]
 
 src = open("index.html", encoding="utf-8").read()
 head = src.split("<head>")[1].split("</head>")[0]
