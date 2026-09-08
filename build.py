@@ -769,8 +769,17 @@ GALLERY = phead("גלריה", "בלי סטוק, בלי פילטרים",
   <div class="grid-g rv rv-d1">%(gear)s</div>
 </section>
 
+<section class="section dark wrap">
+  <div class="rv" style="max-width:620px;margin-bottom:34px"><p class="eyebrow on-dark">03</p><h2>וידאו מהקליניקה</h2>
+    <p class="lead" style="margin-top:16px">כי חלק מהדברים פשוט צריך לראות בתנועה.</p></div>
+  <div class="vid-grid rv rv-d1">
+    <figure class="vid" style="margin:0"><video src="assets/video/clip-1.mp4" controls preload="metadata" playsinline></video><figcaption>מהקליניקה</figcaption></figure>
+    <figure class="vid" style="margin:0"><video src="assets/video/clip-2.mp4" controls preload="metadata" playsinline></video><figcaption>מהקליניקה</figcaption></figure>
+  </div>
+</section>
+
 <section class="section wrap">
-  <div class="rv" style="max-width:620px;margin-bottom:34px"><p class="eyebrow">03</p><h2>הקליניקה</h2>
+  <div class="rv" style="max-width:620px;margin-bottom:34px"><p class="eyebrow">04</p><h2>הקליניקה</h2>
     <p class="lead" style="margin-top:16px">כדי שתדעי לאן את מגיעה עוד לפני שהגעת.</p></div>
   <div class="grid-g rv rv-d1">%(clinic)s</div>
 </section>
@@ -830,18 +839,22 @@ def cell(src, alt, tag=None, cls="g-cell", ph_label=None, ph_note=""):
     return '<div class="%s">%s%s</div>' % (cls, inner, t)
 
 GAL_HOME = "".join([
-  cell("assets/ba-torso.jpg", "תוצאת הסרת שיער בלייזר באזור החזה והבטן", "אחרי 4 טיפולים", "g-cell tall"),
-  cell("assets/ba-armpit.jpg", "לפני ואחרי — הסרת שיער בלייזר בבית השחי", "לפני / אחרי"),
-  cell("assets/ba-face.jpg", "לפני ואחרי — הסרת שיער בלייזר בפנים", "לפני / אחרי"),
+  cell("assets/ba-jaw.jpg", "לפני ואחרי — הסרת שיער בלייזר בקו הלסת", "לפני / אחרי"),
+  cell("assets/ba-cheek-before.jpg", "לחי לפני סדרת טיפולי לייזר", "לפני · 21/11", "g-cell tall"),
+  cell("assets/ba-neck-face.jpg", "לפני ואחרי — צוואר ולחי", "לפני / אחרי"),
   '<div class="g-quote">“להרגיש<br><em class="serif-it">נוח בעור שלך</em>”</div>',
-  cell("assets/inmode-gear.jpg", "מכשור InMode ומשקפי מגן בקליניקה", "InMode"),
-  cell("assets/ba-neck.jpg", "לפני ואחרי — הסרת שיער בלייזר בקו העורף", "לפני / אחרי"),
+  cell("assets/laser-men-back.jpg", "טיפול הסרת שיער בלייזר בגב, בקליניקה", "גם לגברים"),
+  cell("assets/ba-armpit.jpg", "לפני ואחרי — בית שחי", "לפני / אחרי"),
 ])
 
 GAL_FULL = "".join([
-  cell("assets/ba-torso.jpg", "תוצאת הסרת שיער בלייזר בחזה ובבטן", "גברים · 4 טיפולים", "g-cell tall"),
+  cell("assets/ba-cheek-before.jpg", "לחי — לפני סדרת טיפולים", "לפני · 21/11", "g-cell tall"),
+  cell("assets/ba-cheek-after.jpg", "אותה לחי — אחרי סדרת טיפולים", "אחרי · 18/01"),
+  cell("assets/ba-jaw.jpg", "לפני ואחרי — קו לסת", "קו לסת"),
+  cell("assets/ba-neck-face.jpg", "לפני ואחרי — צוואר ולחי", "צוואר"),
   cell("assets/ba-armpit.jpg", "לפני ואחרי — בית שחי", "בית שחי"),
   cell("assets/ba-face.jpg", "לפני ואחרי — פנים", "פנים"),
+  cell("assets/ba-torso.jpg", "תוצאת הסרת שיער בלייזר בחזה ובבטן", "גברים · 4 טיפולים"),
   cell("assets/ba-neck.jpg", "לפני ואחרי — קו עורף", "קו עורף"),
   cell("assets/service-skintags.jpg", "לפני ואחרי — הסרת סרחי עור בצוואר", "סרחי עור"),
   cell("assets/service-plasma.jpg", "לפני ואחרי — הסרת נימים בפנים", "נימים"),
@@ -850,25 +863,25 @@ GAL_FULL = "".join([
 ])
 
 GEAR = "".join([
-  cell("assets/inmode-gear.jpg", "מגבת InMode ומשקפי מגן", "InMode", "g-cell tall"),
+  cell("assets/hero-inmode-leg.jpg", "ידית InMode בטיפול ברגליים", "InMode", "g-cell tall"),
+  cell("assets/inmode-gear.jpg", "מגבת InMode ומשקפי מגן", "בקליניקה"),
+  cell("assets/laser-men-back.jpg", "טיפול לייזר בגב", "בפעולה"),
   cell("assets/service-laser.jpg", "ידית הלייזר בטיפול", "בפעולה"),
-  cell(None, "", "", "g-cell", "מכשיר InMode Optimas — צילום מלא", "להשלמה"),
-  cell(None, "", "", "g-cell", "מסך המכשיר / הלוגו מקרוב", "להשלמה"),
 ])
 
 CLINIC = "".join([
   cell(None, "", "", "g-cell tall", "חדר הטיפולים", "להשלמה"),
   cell(None, "", "", "g-cell", "פינת הקבלה", "להשלמה"),
-  cell(None, "", "", "g-cell", "רויטל בעבודה", "להשלמה"),
+  cell("assets/laser-men-back.jpg", "רויטל בטיפול בקליניקה", "בעבודה"),
   cell("assets/about-hands.jpg", "רויטל בעבודה בקליניקה", "מאחורי הקלעים"),
 ])
 
 WA_WALL = "".join(
   '<figure><img src="assets/wa-%d.jpg" alt="הודעת לקוחה" loading="lazy"></figure>' % i
-  for i in range(1, 7) if os.path.exists("assets/wa-%d.jpg" % i))
+  for i in range(1, 10) if os.path.exists("assets/wa-%d.jpg" % i))
 
-HERO_FIG  = figure("assets/hero-handpiece.jpg", "ידית מכשיר הלייזר InMode בטיפול בקליניקה",
-                   "צילום הירו — רויטל בקליניקה", "יחס 4:5 · assets/hero-handpiece.jpg")
+HERO_FIG  = figure("assets/hero-inmode-leg.jpg", "ידית מכשיר הלייזר InMode בטיפול הסרת שיער ברגליים",
+                   "צילום הירו — רויטל בקליניקה", "יחס 4:5 · assets/revital-hero.jpg")
 ABOUT_FIG = figure("assets/about-hands.jpg", "רויטל בעבודה בקליניקה",
                    "פורטרט של רויטל", "יחס 4:5 · assets/revital-portrait.jpg")
 PORTRAIT  = figure(None, "", "פורטרט של רויטל", "יחס 4:5 · assets/revital-portrait.jpg")

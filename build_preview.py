@@ -51,6 +51,12 @@ out = ("<title>%s</title>\n%s\n<style>%s</style>\n%s<main id=\"app\"></main>\n%s
   addEventListener('hashchange',render); render();
 })();"""))
 
+# הווידאו נשאר קובץ חיצוני — בתצוגה המאוחדת מוצג פלייסהולדר במקומו
+out = re.sub(r'<figure class="vid"[^>]*>.*?</figure>',
+  '<figure class="vid" style="margin:0;display:grid;place-content:center;text-align:center;gap:8px;color:#9C9186;padding:26px">'
+  '<b style="color:#FAF7F1;font-size:17px">וידאו מהקליניקה</b>'
+  '<small style="font-size:12px">מתנגן באתר עצמו · assets/video/</small></figure>', out, flags=re.S)
+
 # הטמעת כל הקבצים כ-data URI
 for a in sorted(set(re.findall(r'assets/[A-Za-z0-9_\-.]+\.(?:jpg|png)', out))):
     if os.path.exists(a):
