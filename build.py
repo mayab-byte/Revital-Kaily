@@ -243,11 +243,8 @@ HOME = """
 
 <section class="section wrap">
   <div class="rv" style="display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap;margin-bottom:44px">
-    <div>
-      <p class="eyebrow">תוצאות מהקליניקה</p>
-      <h2>פחות הבטחות.<br><em class="serif-it">יותר לפני ואחרי.</em></h2>
-    </div>
-    <a class="link-u" href="gallery.html">לגלריה המלאה <span>←</span></a>
+    <h2>לפני ואחרי</h2>
+    <a class="link-u" href="gallery.html">לכל העבודות <span>←</span></a>
   </div>
   <div class="grid-g rv rv-d1">%(gallery)s</div>
 </section>
@@ -435,11 +432,7 @@ LASER = phead("הסרת שיער בלייזר", "השירות המרכזי בק�
 </section>
 
 <section class="section sand wrap">
-  <div class="rv" style="max-width:640px;margin-bottom:40px">
-    <p class="eyebrow">תוצאות אמיתיות</p>
-    <h2>לפני ואחרי</h2>
-    <p class="lead" style="margin-top:18px">כל תמונה כאן היא של לקוחה אמיתית, בהסכמתה. בלי עריכה ובלי תאורה מטעה.</p>
-  </div>
+  <h2 class="rv" style="margin-bottom:34px">לפני ואחרי</h2>
   <div class="grid-g rv rv-d1">%(gallery)s</div>
 </section>
 
@@ -716,9 +709,7 @@ ABOUT = """
 </section>
 
 <section class="section sand wrap">
-  <div class="rv" style="max-width:640px;margin-bottom:38px">
-    <p class="eyebrow">תוצאות</p><h2>לפני ואחרי</h2>
-  </div>
+  <h2 class="rv" style="margin-bottom:34px">לפני ואחרי</h2>
   <div class="grid-g rv rv-d1">%(gallery)s</div>
   <p class="rv" style="margin-top:24px"><a class="link-u" href="gallery.html">לגלריה המלאה <span>←</span></a></p>
 </section>
@@ -788,32 +779,16 @@ FAQPAGE = phead("שאלות ותשובות", "בלי סימני שאלה",
 
 # ===================== גלריה =====================
 GALLERY = phead("גלריה", "בלי סטוק, בלי פילטרים",
-  "רגעים<br><em class='serif-it'>מהקליניקה</em>",
-  "תוצאות אמיתיות, המכשור, והמקום שאליו את מגיעה. כל תמונת לקוחה מפורסמת בהסכמה בכתב.", cta=False) + """
+  "העבודות<br><em class=\'serif-it\'>שלנו</em>",
+  "תוצאות אמיתיות של לקוחות הקליניקה. כל תמונת לקוחה מפורסמת בהסכמה בכתב.", cta=False) + """
 <section class="section wrap">
-  <div class="rv" style="max-width:620px;margin-bottom:34px"><p class="eyebrow">01</p><h2>לפני ואחרי</h2></div>
+  <h2 class="rv" style="margin-bottom:34px">לפני ואחרי</h2>
   <div class="grid-g rv rv-d1">%(gallery_full)s</div>
 </section>
 
 <section class="section sand wrap">
-  <div class="rv" style="max-width:620px;margin-bottom:34px"><p class="eyebrow">02</p><h2>המכשור</h2>
-    <p class="lead" style="margin-top:16px">InMode Optimas. זה מה שעומד מאחורי ההבדל בתוצאה.</p></div>
+  <h2 class="rv" style="margin-bottom:34px">המכשור</h2>
   <div class="grid-g rv rv-d1">%(gear)s</div>
-</section>
-
-<section class="section dark wrap">
-  <div class="rv" style="max-width:620px;margin-bottom:34px"><p class="eyebrow on-dark">03</p><h2>וידאו מהקליניקה</h2>
-    <p class="lead" style="margin-top:16px">כי חלק מהדברים פשוט צריך לראות בתנועה.</p></div>
-  <div class="vid-grid rv rv-d1">
-    <figure class="vid" style="margin:0"><video src="assets/video/clip-1.mp4" controls preload="metadata" playsinline></video><figcaption>מהקליניקה</figcaption></figure>
-    <figure class="vid" style="margin:0"><video src="assets/video/clip-2.mp4" controls preload="metadata" playsinline></video><figcaption>מהקליניקה</figcaption></figure>
-  </div>
-</section>
-
-<section class="section wrap">
-  <div class="rv" style="max-width:620px;margin-bottom:34px"><p class="eyebrow">04</p><h2>הקליניקה</h2>
-    <p class="lead" style="margin-top:16px">כדי שתדעי לאן את מגיעה עוד לפני שהגעת.</p></div>
-  <div class="grid-g rv rv-d1">%(clinic)s</div>
 </section>
 """ + closer("רוצה לראות את זה במו עינייך?", "בואי לטסט חינם, תכירי את המקום, את המכשיר ואותי.")
 
@@ -1046,12 +1021,6 @@ GEAR = "".join([
   cell("assets/ed-laser.jpg", "ידית הלייזר בטיפול", "בפעולה"),
 ])
 
-CLINIC = "".join([
-  cell("assets/ed-lily-b.jpg", "פרט אווירה מהקליניקה", "אווירה", "g-cell tall"),
-  cell("assets/px-glow.jpg", "עור אחיד וזוהר אחרי תהליך טיפולים", "תוצאה"),
-  cell("assets/laser-men-back.jpg", "רויטל בטיפול בקליניקה", "בעבודה"),
-  cell("assets/about-hands.jpg", "רויטל בעבודה בקליניקה", "מאחורי הקלעים"),
-])
 
 WA_WALL = "".join(
   '<figure><img src="assets/wa-%d.jpg" alt="הודעת לקוחה" loading="lazy"></figure>' % i
@@ -1110,7 +1079,7 @@ CTX = {
   "sc_r": SC_R, "sc_l": SC_L, "sc_c": SC_C,
   "wa": WA, "tel": TEL, "phone": PHONE, "mail": MAIL, "fb": FB, "form": FORM, "faq": acc(FAQ_ITEMS), "faq_tags": acc(FAQ_TAGS),
   "hero": HERO_FIG, "about": ABOUT_FIG, "about_portrait": PORTRAIT,
-  "gallery": GAL_HOME, "gallery_full": GAL_FULL, "gear": GEAR, "clinic": CLINIC, "wa_wall": WA_WALL,
+  "gallery": GAL_HOME, "gallery_full": GAL_FULL, "gear": GEAR, "wa_wall": WA_WALL,
   "fig_skintags": frame_img("assets/service-skintags.jpg", "לפני ואחרי: הסרת סרחי עור בצוואר", "טיפול סרחי עור", "assets/skintags-treatment.jpg", doc=True),
   "fig_facial":   frame_img("assets/px-facial.jpg", "אבחון וטיפוח עור הפנים", "אבחון עור", "assets/facial-diagnosis.jpg", ratio="4/5"),
   "fig_mask":     frame_img("assets/px-mask.jpg", "מסכת פנים בטיפול", "טיפול פנים", "assets/facial-mask.jpg"),
