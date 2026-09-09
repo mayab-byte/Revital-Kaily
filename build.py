@@ -780,7 +780,7 @@ FAQPAGE = phead("שאלות ותשובות", "בלי סימני שאלה",
 # ===================== גלריה =====================
 GALLERY = phead("גלריה", "בלי סטוק, בלי פילטרים",
   "העבודות<br><em class=\'serif-it\'>שלנו</em>",
-  "תוצאות אמיתיות של לקוחות הקליניקה. כל תמונת לקוחה מפורסמת בהסכמה בכתב.", cta=False) + """
+  "תוצאות אמיתיות של לקוחות הקליניקה.", cta=False) + """
 <section class="section wrap">
   <h2 class="rv" style="margin-bottom:34px">לפני ואחרי</h2>
   <div class="grid-g rv rv-d1">%(gallery_full)s</div>
@@ -1013,8 +1013,8 @@ GAL_HOME = "".join([
 GAL_FULL = "".join([
   cell("assets/ba-cheek-before.jpg", "לחי, לפני סדרת טיפולים", "לפני · 21/11", "g-cell tall"),
   cell("assets/ba-cheek-after.jpg", "אותה לחי, אחרי סדרת טיפולים", "אחרי · 18/01"),
-  cell("assets/ba-jaw.jpg", "לפני ואחרי: קו לסת", "קו לסת"),
-  cell("assets/ba-neck-face.jpg", "לפני ואחרי: צוואר ולחי", "צוואר"),
+  cell("assets/ba-jaw.jpg", "לפני ואחרי: לחי", "לחי"),
+  cell("assets/ba-neck-face.jpg", "לפני ואחרי: קו לסת ולחי", "קו לסת"),
   cell("assets/ba-armpit.jpg", "לפני ואחרי: בית שחי", "בית שחי"),
   cell("assets/ba-face.jpg", "לפני ואחרי: פנים", "פנים"),
   cell("assets/ba-torso.jpg", "תוצאת הסרת שיער בלייזר בחזה ובבטן", "גברים · 4 טיפולים"),
@@ -1029,7 +1029,6 @@ GEAR = "".join([
   cell("assets/hero-inmode-leg.jpg", "ידית InMode בטיפול ברגליים", "InMode", "g-cell tall"),
   cell("assets/inmode-gear.jpg", "מגבת InMode ומשקפי מגן", "בקליניקה"),
   cell("assets/laser-men-back.jpg", "טיפול לייזר בגב", "בפעולה"),
-  cell("assets/ed-laser.jpg", "ידית הלייזר בטיפול", "בפעולה"),
 ])
 
 
