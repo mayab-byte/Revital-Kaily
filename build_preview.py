@@ -55,7 +55,7 @@ out = ("<title>%s</title>\n%s\n<style>%s</style>\n%s<main id=\"app\"></main>\n%s
 
 # הווידאו נשאר קובץ חיצוני — בתצוגה המאוחדת מוצג פלייסהולדר במקומו
 out = re.sub(r'<figure class="vid"[^>]*>.*?</figure>',
-  '<figure class="vid" style="margin:0;display:grid;place-content:center;text-align:center;gap:8px;color:#9C9186;padding:26px">'
+  '<figure class="vid" style="margin:0;display:grid;place-content:center;text-align:center;gap:8px;color:#9C9186;padding:26px;aspect-ratio:9/16">'
   '<b style="color:#FAF7F1;font-size:17px">וידאו מהקליניקה</b>'
   '<small style="font-size:12px">מתנגן באתר עצמו · assets/video/</small></figure>', out, flags=re.S)
 

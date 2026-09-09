@@ -787,6 +787,17 @@ GALLERY = phead("גלריה", "בלי סטוק, בלי פילטרים",
 </section>
 
 <section class="section sand wrap">
+  <div class="rv" style="max-width:640px;margin-bottom:34px">
+    <h2>בתנועה</h2>
+    <p class="lead" style="margin-top:18px">תוצאות מדהימות אחרי מספר טיפולים. כי יש דברים שתמונה אחת לא מספיקה בשבילם, וצריך פשוט לראות.</p>
+  </div>
+  <div class="vid-grid rv rv-d1">
+    <figure class="vid" style="margin:0"><video src="assets/video/clip-1.mp4" controls preload="metadata" playsinline></video></figure>
+    <figure class="vid" style="margin:0"><video src="assets/video/clip-2.mp4" controls preload="metadata" playsinline></video></figure>
+  </div>
+</section>
+
+<section class="section wrap">
   <h2 class="rv" style="margin-bottom:34px">המכשור</h2>
   <div class="grid-g rv rv-d1">%(gear)s</div>
 </section>

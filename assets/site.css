@@ -388,8 +388,13 @@ body.no-hero{padding-top:82px}
 .dark .ph b{color:var(--ivory)}
 
 /* ---------- וידאו ---------- */
-.vid-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
-.vid{position:relative;border-radius:var(--r-lg);overflow:hidden;background:var(--ink);aspect-ratio:9/16;max-height:640px}
+.vid-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:760px;margin-inline:auto}
+.vid{position:relative;border-radius:var(--r-lg);overflow:hidden;background:var(--ink);aspect-ratio:9/16;max-height:620px}
+/* סימן נגינה מאחורי הנגן, כדי שהמסגרת לא תיראה ריקה לפני שהפריים נטען */
+.vid::before{content:"";position:absolute;top:50%;inset-inline-start:50%;width:0;height:0;z-index:0;
+  transform:translate(50%,-50%);border-style:solid;border-width:13px 0 13px 21px;
+  border-color:transparent transparent transparent rgba(220,192,138,.45)}
+.vid video{position:relative;z-index:1}
 .vid video{width:100%;height:100%;object-fit:cover;display:block;background:var(--ink)}
 .vid figcaption{position:absolute;inset-inline:0;bottom:0;padding:34px 20px 16px;color:#fff;font-size:13.5px;
   background:linear-gradient(to top,rgba(10,9,8,.82),transparent);pointer-events:none}
