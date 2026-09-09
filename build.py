@@ -10,8 +10,7 @@ NAV = [
         ("facials.html", "טיפולי פנים"),
         ("treatments.html", "טיפולים נלווים"),
     ]),
-    ("about.html", "אודות", None),
-    ("testimonials.html", "המלצות", None),
+    ("about.html", "אודות והמלצות", None),
     ("faq.html", "שאלות ותשובות", None),
     ("gallery.html", "גלריה", None),
     ("contact.html", "צור קשר", None),
@@ -56,7 +55,7 @@ FOOTER = """<footer class="ftr">
     <a href="laser.html">הסרת שיער בלייזר</a><a href="skin-tags.html">הסרת סרחי עור</a>
     <a href="facials.html">טיפולי פנים</a><a href="treatments.html">טיפולים נלווים</a></div>
   <div><strong>הקליניקה</strong>
-    <a href="about.html">אודות רויטל</a><a href="testimonials.html">המלצות</a>
+    <a href="about.html">אודות רויטל</a><a href="about.html#stories">המלצות</a>
     <a href="gallery.html">גלריה</a><a href="faq.html">שאלות ותשובות</a></div>
   <div><strong>דברי איתי</strong>
     <a href="%(tel)s">%(phone)s</a>
@@ -265,7 +264,7 @@ HOME = """
   </div>
   <div class="ribbon rv">
     <span>Google Reviews</span><b>4.9</b><span>★★★★★</span><span>על בסיס ביקורות לקוחות</span>
-    <a href="testimonials.html">לכל ההמלצות ←</a>
+    <a href="about.html#stories">לכל ההמלצות ←</a>
   </div>
 </section>
 
@@ -693,15 +692,10 @@ ABOUT = """
     </div>
   </div>
 </section>
-""" + closer("רוצה להכיר?", "בואי לטסט אבחון חינם: נכיר, ותראי בעצמך איך אני עובדת.")
 
-# ===================== המלצות =====================
-TESTIMONIALS = phead("המלצות", "הן כבר עברו את זה",
-  "מה שאני לא יכולה<br><em class='serif-it'>להגיד על עצמי</em>",
-  "אני יכולה לספר לך כמה שאני רוצה שזה עובד. עדיף שתשמעי את זה מהן.", cta=False) + """
-<section class="section wrap sand" style="padding-inline:var(--pad)">
+<section class="section sand wrap" id="stories">
   <div class="rv" style="display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap;margin-bottom:44px">
-    <div><p class="eyebrow">בקולן</p><h2>סיפורים מהקליניקה</h2></div>
+    <div><p class="eyebrow">הן כבר עברו את זה</p><h2>מה שאני לא יכולה<br><em class="serif-it">להגיד על עצמי.</em></h2></div>
     <div class="ctrls"><button class="prev" aria-label="הקודם">→</button><button class="next" aria-label="הבא">←</button></div>
   </div>
   <div class="story-wrap rv rv-d1" aria-live="polite">
@@ -744,7 +738,7 @@ TESTIMONIALS = phead("המלצות", "הן כבר עברו את זה",
     </div>
   </div>
 </section>
-""" + closer("מוכנה להתחיל?", "טסט אבחון חינם, בלי עלות ובלי התחייבות.")
+""" + closer("רוצה להכיר?", "בואי לטסט אבחון חינם: נכיר, ותראי בעצמך איך אני עובדת.")
 
 # ===================== שאלות ותשובות =====================
 FAQ_FULL = {
@@ -1131,7 +1125,6 @@ PAGES = [
  ("facials.html","טיפולי פנים בגבעת שמואל | רויטל קיילי","טיפולי פנים מותאמים אישית בגבעת שמואל, ניקוי עמוק, חידוש עור והבהרה, אחרי אבחון עור אישי.",FACIALS),
  ("treatments.html","טיפולי פלזמה וחידוש עור | רויטל קיילי","טיפולי פלזמה, הידוק עור והסרת נימים בקליניקת בוטיק בגבעת שמואל, אחרי אבחון אישי.",TREATMENTS),
  ("about.html","על רויטל קיילי | קליניקת בוטיק בגבעת שמואל","12 שנות ניסיון בקוסמטיקה, מכשור InMode Optimas וקליניקת בוטיק בגבעת שמואל. הכירי את רויטל ואת דרך העבודה שלה.",ABOUT),
- ("testimonials.html","המלצות לקוחות | רויטל קיילי","מה מספרות הלקוחות של רויטל קיילי, סיפורים, הודעות אמיתיות ותמונות לפני ואחרי מקליניקת הלייזר בגבעת שמואל.",TESTIMONIALS),
  ("faq.html","שאלות ותשובות על הסרת שיער בלייזר | רויטל קיילי","כמה טיפולים, אם זה כואב, מה עם שיער בהיר, ולמה מכשור משנה. תשובות כנות מרויטל קיילי.",FAQPAGE),
  ("gallery.html","גלריה | קליניקת רויטל קיילי, גבעת שמואל","תוצאות לפני ואחרי, המכשור והקליניקה של רויטל קיילי בגבעת שמואל.",GALLERY),
  ("contact.html","צור קשר | רויטל קיילי, גבעת שמואל","לתיאום טסט אבחון חינם בקליניקה של רויטל קיילי בגבעת שמואל. משאירים פרטים ורויטל חוזרת אישית תוך 24 שעות.",CONTACT),
